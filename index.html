@@ -333,7 +333,7 @@
             const summarySection = document.getElementById('summarySection');
             const summaryTextarea = document.getElementById('summaryTextarea');
             const copyButton = document.getElementById('copyButton');
-
+            
             // Function to reset the form
             function resetForm() {
                 document.querySelectorAll('input[type="text"], textarea').forEach(element => {
@@ -418,6 +418,7 @@
 
             // Function to copy text to clipboard
             function copySummary() {
+                generateSummary(); // Make sure the summary is generated first
                 summaryTextarea.select();
                 document.execCommand('copy');
                 alert('Summary copied to clipboard!');
