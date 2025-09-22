@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Preparation Workout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .container {
+            max-width: 800px;
+        }
+        textarea {
+            resize: none;
+        }
+        .success-map-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .success-map-center {
+            position: absolute;
+            width: 180px;
+            height: 100px;
+            background-color: #5b21b6;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        .success-map-bubble {
+            position: absolute;
+            width: 150px;
+            height: 100px;
+            padding: 8px;
+            background-color: #e5e7eb;
+            border: 2px solid #5b21b6;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            z-index: 5;
+        }
+        .success-map-bubble:hover {
+            transform: scale(1.05);
+        }
+        .success-map-bubble textarea {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            font-size: 0.875rem;
+            color: #374151;
+            resize: none;
+        }
+        /* Arrow styling */
+        .success-map-bubble::before {
+            content: '';
+            position: absolute;
+            background-color: #5b21b6;
+            z-index: -1;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .success-map-bubble::after {
+            content: '';
+            position: absolute;
+            border: solid transparent;
+            z-index: -1;
+            border-width: 7px;
+        }
+        /* Bubble positions and arrows */
+        #bubble-1 { top: 20px; left: 50px; }
+        #bubble-1::before { width: 80px; height: 3px; top: 90px; left: 140px; transform: rotate(-30deg); transform-origin: top left; }
+        #bubble-1::after { border-left-color: #5b21b6; top: 86px; left: 220px; transform: rotate(-30deg); }
+
+        #bubble-2 { top: 20px; right: 50px; }
+        #bubble-2::before { width: 80px; height: 3px; top: 90px; right: 140px; transform: rotate(30deg); transform-origin: top right; }
+        #bubble-2::after { border-right-color: #5b21b6; top: 86px; right: 220px; transform: rotate(30deg); }
+
+        #bubble-3 { top: 180px; left: 0px; }
+        #bubble-3::before { width: 100px; height: 3px; top: 50px; left: 150px; transform: rotate(0deg); }
+        #bubble-3::after { border-left-color: #5b21b6; top: 46px; left: 250px; }
+
+        #bubble-4 { top: 180px; right: 0px; }
+        #bubble-4::before { width: 100px; height: 3px; top: 50px; right: 150px; transform: rotate(0deg); }
+        #bubble-4::after { border-right-color: #5b21b6; top: 46px; right: 250px; }
+
+        #bubble-5 { bottom: 20px; left: 50px; }
+        #bubble-5::before { width: 80px; height: 3px; bottom: 90px; left: 140px; transform: rotate(30deg); transform-origin: bottom left; }
+        #bubble-5::after { border-left-color: #5b21b6; bottom: 86px; left: 220px; transform: rotate(30deg); }
+
+        #bubble-6 { bottom: 20px; right: 50px; }
+        #bubble-6::before { width: 80px; height: 3px; bottom: 90px; right: 140px; transform: rotate(-30deg); transform-origin: bottom right; }
+        #bubble-6::after { border-right-color: #5b21b6; bottom: 86px; right: 220px; transform: rotate(-30deg); }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="container bg-white rounded-xl shadow-2xl p-8 space-y-12">
+        <header class="text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800">The Road to the Championship</h1>
+            <p class="text-lg md:text-xl text-gray-500 mt-2">Mental preparation exercise for the gymnast</p>
+        </header>
+
+        <!-- Section 1: The Success Map -->
+        <section class="space-y-6">
+            <div class="flex flex-col md:flex-row items-center bg-gray-50 p-6 rounded-lg shadow-inner">
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-bold text-indigo-600 mb-2">1. The Success Map</h2>
+                    <p class="text-gray-600">Visualize all your strengths, both physical and mental, that have brought you here.</p>
+                </div>
+                <div class="w-full md:w-1/2 mt-4 md:mt-0 flex justify-center">
+                    <img src="https://placehold.co/300x200/5b21b6/ffffff?text=Success+Map" alt="Drawing of a map" class="rounded-lg shadow-md">
+                </div>
+            </div>
+            <div class="success-map-container">
+                <div class="success-map-center">
+                    World Championship
+                </div>
+                <div id="bubble-1" class="success-map-bubble">
+                    <textarea id="success_bubble_1" placeholder="Reason #1"></textarea>
+                </div>
+                <div id="bubble-2" class="success-map-bubble">
+                    <textarea id="success_bubble_2" placeholder="Reason #2"></textarea>
+                </div>
+                <div id="bubble-3" class="success-map-bubble">
+                    <textarea id="success_bubble_3" placeholder="Reason #3"></textarea>
+                </div>
+                <div id="bubble-4" class="success-map-bubble">
+                    <textarea id="success_bubble_4" placeholder="Reason #4"></textarea>
+                </div>
+                <div id="bubble-5" class="success-map-bubble">
+                    <textarea id="success_bubble_5" placeholder="Reason #5"></textarea>
+                </div>
+                <div id="bubble-6" class="success-map-bubble">
+                    <textarea id="success_bubble_6" placeholder="Example: My perfected floor routine."></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Weekly Priorities -->
+        <section class="space-y-6">
+            <div class="flex flex-col md:flex-row items-center bg-gray-50 p-6 rounded-lg shadow-inner">
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-bold text-indigo-600 mb-2">2. Weekly Priorities</h2>
+                    <p class="text-gray-600">List your 5 most important tasks this week, in order of importance, and the time you will dedicate to each one.</p>
+                </div>
+                <div class="w-full md:w-1/2 mt-4 md:mt-0 flex justify-center">
+                    <img src="https://placehold.co/300x200/5b21b6/ffffff?text=Priorities" alt="Drawing of a checklist" class="rounded-lg shadow-md">
+                </div>
+            </div>
+            <div class="space-y-4">
+                <div class="flex flex-col md:flex-row items-center gap-2">
+                    <label for="priority_1" class="block text-sm font-medium text-gray-700 w-full md:w-1/2">1. Priority:</label>
+                    <input type="text" id="priority_1" class="mt-1 block w-full md:w-1/2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                    <label for="time_1" class="block text-sm font-medium text-gray-700">Time (hours):</label>
+                    <input type="text" id="time_1" class="mt-1 block w-full md:w-auto rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-2">
+                    <label for="priority_2" class="block text-sm font-medium text-gray-700 w-full md:w-1/2">2. Priority:</label>
+                    <input type="text" id="priority_2" class="mt-1 block w-full md:w-1/2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                    <label for="time_2" class="block text-sm font-medium text-gray-700">Time (hours):</label>
+                    <input type="text" id="time_2" class="mt-1 block w-full md:w-auto rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-2">
+                    <label for="priority_3" class="block text-sm font-medium text-gray-700 w-full md:w-1/2">3. Priority:</label>
+                    <input type="text" id="priority_3" class="mt-1 block w-full md:w-1/2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                    <label for="time_3" class="block text-sm font-medium text-gray-700">Time (hours):</label>
+                    <input type="text" id="time_3" class="mt-1 block w-full md:w-auto rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-2">
+                    <label for="priority_4" class="block text-sm font-medium text-gray-700 w-full md:w-1/2">4. Priority:</label>
+                    <input type="text" id="priority_4" class="mt-1 block w-full md:w-1/2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                    <label for="time_4" class="block text-sm font-medium text-gray-700">Time (hours):</label>
+                    <input type="text" id="time_4" class="mt-1 block w-full md:w-auto rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-2">
+                    <label for="priority_5" class="block text-sm font-medium text-gray-700 w-full md:w-1/2">5. Priority:</label>
+                    <input type="text" id="priority_5" class="mt-1 block w-full md:w-1/2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                    <label for="time_5" class="block text-sm font-medium text-gray-700">Time (hours):</label>
+                    <input type="text" id="time_5" class="mt-1 block w-full md:w-auto rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: The Arousal Level Thermometer -->
+        <section class="space-y-6">
+            <div class="flex flex-col md:flex-row items-center bg-gray-50 p-6 rounded-lg shadow-inner">
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-bold text-indigo-600 mb-2">3. The Arousal Level Thermometer</h2>
+                    <p class="text-gray-600">This app will help you understand your arousal level and find out how you can raise or lower that level as needed.</p>
+                </div>
+                <div class="w-full md:w-1/2 mt-4 md:mt-0 flex justify-center">
+                    <img src="https://placehold.co/300x200/5b21b6/ffffff?text=Arousal+Thermometer" alt="Drawing of a thermometer" class="rounded-lg shadow-md">
+                </div>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label for="arousal_now" class="block text-sm font-medium text-gray-700">My Arousal level NOW (from 1 to 10):</label>
+                    <input type="text" id="arousal_now" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                </div>
+                <div>
+                    <label for="arousal_training" class="block text-sm font-medium text-gray-700">How do you think your arousal level is during your most recent trainings?</label>
+                    <input type="text" id="arousal_training" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                </div>
+                <div>
+                    <label for="arousal_strategies" class="block text-sm font-medium text-gray-700">What things help you raise or lower that arousal level for you?</label>
+                    <textarea id="arousal_strategies" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" placeholder="Write your reflections here..."></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Weekly Micro-Goals -->
+        <section class="space-y-6">
+            <div class="flex flex-col md:flex-row items-center bg-gray-50 p-6 rounded-lg shadow-inner">
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-bold text-indigo-600 mb-2">4. Weekly Micro-Goals</h2>
+                    <p class="text-gray-600">Micro-goals are tiny, specific steps you take each week to stay on track. They are not about the big result, but about the small actions that build confidence and consistency.</p>
+                </div>
+                <div class="w-full md:w-1/2 mt-4 md:mt-0 flex justify-center">
+                    <img src="https://placehold.co/300x200/5b21b6/ffffff?text=Micro-Goals" alt="Drawing of a goal" class="rounded-lg shadow-md">
+                </div>
+            </div>
+            <div>
+                <label for="weekly_goals" class="block text-sm font-medium text-gray-700">
+                    <span class="font-semibold text-gray-800">This Week's Micro-Goals:</span> <br> What small, specific goals will you accomplish this week to get closer to your big goal?
+                    <p class="text-gray-600 mt-2">Example: "Perform my full floor routine without any falls at least 3 times this week." or "Practice my balance beam dismount 10 times perfectly on the soft mat."</p>
+                </label>
+                <textarea id="weekly_goals" rows="6" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" placeholder="Write your goals here..."></textarea>
+            </div>
+        </section>
+
+        <!-- Section 5: The Pre-Competition Dialogue -->
+        <section class="space-y-6">
+            <div class="flex flex-col md:flex-row items-center bg-gray-50 p-6 rounded-lg shadow-inner">
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-bold text-indigo-600 mb-2">5. The Pre-Competition Dialogue</h2>
+                    <p class="text-gray-600">Identify your worst thoughts before a competition and decide why you will change them.</p>
+                </div>
+                <div class="w-full md:w-1/2 mt-4 md:mt-0 flex justify-center">
+                    <img src="https://placehold.co/300x200/5b21b6/ffffff?text=Inner+Dialogue" alt="Drawing of a person thinking" class="rounded-lg shadow-md">
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="flex-1 space-y-4">
+                    <h3 class="text-xl font-semibold text-gray-800">The Worst Things I Say Before a Competition</h3>
+                    <textarea id="critic_1" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" placeholder="Negative thought #1"></textarea>
+                    <textarea id="critic_2" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" placeholder="Negative thought #2"></textarea>
+                    <textarea id="critic_3" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" placeholder="Negative thought #3"></textarea>
+                </div>
+                <div class="flex-1 space-y-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Why I Will Change This Thought</h3>
+                    <textarea id="champion_1" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" placeholder="Reason for change #1"></textarea>
+                    <textarea id="champion_2" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" placeholder="Reason for change #2"></textarea>
+                    <textarea id="champion_3" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" placeholder="Reason for change #3"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Mindfulness and Focus -->
+        <section class="space-y-6">
+            <div class="flex flex-col md:flex-row items-center bg-gray-50 p-6 rounded-lg shadow-inner">
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-bold text-indigo-600 mb-2">6. Mindfulness and Focus</h2>
+                    <p class="text-gray-600">Train your mind to concentrate on the present and avoid distractions.</p>
+                </div>
+                <div class="w-full md:w-1/2 mt-4 md:mt-0 flex justify-center">
+                    <img src="https://placehold.co/300x200/5b21b6/ffffff?text=Mindful+Focus" alt="Drawing of a person meditating" class="rounded-lg shadow-md">
+                </div>
+            </div>
+            <div>
+                <label for="mindfulness_notes" class="block text-sm font-medium text-gray-700">
+                    <span class="font-semibold text-gray-800">Mindful Focus Exercises:</span> <br> Choose a technique and practice it during your training sessions.
+                    <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
+                        <li>
+                            <p class="font-semibold">Mindful Repetition:</p> During a drill (e.g., a specific salto, a handstand), focus entirely on the sensation of the movement. How do your muscles feel? What is the sound of your feet on the floor?
+                        </li>
+                        <li>
+                            <p class="font-semibold">The 5-4-3-2-1 Grounding Technique:</p> When feeling overwhelmed, quickly name five things you can see, four things you can feel, three things you can hear, two things you can smell, and one thing you can taste. This pulls the mind back to the present.
+                        </li>
+                        <li>
+                            <p class="font-semibold">Breathing as an Anchor:</p> Focus on your breath. Notice the cool air coming in through your nose and the warm air leaving your mouth. If your mind wanders, gently bring it back to your breath.
+                        </li>
+                    </ul>
+                    <br>
+                    <span class="font-semibold text-gray-800">Reflections:</span> These techniques are examples of how to bring your mind to the present without thinking about future fears or past mistakes before doing an exercise.
+                </label>
+                <textarea id="mindfulness_notes" rows="6" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" placeholder="Write your notes here..."></textarea>
+            </div>
+        </section>
+
+        <!-- Control buttons -->
+        <div class="flex justify-center gap-4 mt-8">
+            <button id="resetButton" class="px-6 py-3 bg-red-500 text-white rounded-full font-bold shadow-lg hover:bg-red-600 transition duration-300">
+                Reset
+            </button>
+            <button id="summarizeButton" class="px-6 py-3 bg-indigo-600 text-white rounded-full font-bold shadow-lg hover:bg-indigo-700 transition duration-300">
+                Generate Summary
+            </button>
+        </div>
+
+        <!-- Summary Section -->
+        <section id="summarySection" class="hidden mt-12 bg-gray-50 p-6 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">Summary of Your Answers</h2>
+            <p class="text-gray-600 mb-4 text-center">You can copy this text and send it to your client or coach.</p>
+            <textarea id="summaryTextarea" rows="15" class="w-full p-4 border border-gray-300 rounded-lg bg-white" readonly></textarea>
+            <div class="flex justify-center mt-4">
+                <button id="copyButton" class="px-6 py-3 bg-green-500 text-white rounded-full font-bold shadow-lg hover:bg-green-600 transition duration-300">
+                    Copy Summary
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const resetButton = document.getElementById('resetButton');
+            const summarizeButton = document.getElementById('summarizeButton');
+            const summarySection = document.getElementById('summarySection');
+            const summaryTextarea = document.getElementById('summaryTextarea');
+            const copyButton = document.getElementById('copyButton');
+
+            // Function to reset the form
+            function resetForm() {
+                document.querySelectorAll('input[type="text"], textarea').forEach(element => {
+                    element.value = '';
+                });
+                summarySection.classList.add('hidden');
+            }
+
+            // Function to generate the summary
+            function generateSummary() {
+                const successBubble1 = document.getElementById('success_bubble_1').value;
+                const successBubble2 = document.getElementById('success_bubble_2').value;
+                const successBubble3 = document.getElementById('success_bubble_3').value;
+                const successBubble4 = document.getElementById('success_bubble_4').value;
+                const successBubble5 = document.getElementById('success_bubble_5').value;
+                const successBubble6 = document.getElementById('success_bubble_6').value;
+                const priority1 = document.getElementById('priority_1').value;
+                const time1 = document.getElementById('time_1').value;
+                const priority2 = document.getElementById('priority_2').value;
+                const time2 = document.getElementById('time_2').value;
+                const priority3 = document.getElementById('priority_3').value;
+                const time3 = document.getElementById('time_3').value;
+                const priority4 = document.getElementById('priority_4').value;
+                const time4 = document.getElementById('time_4').value;
+                const priority5 = document.getElementById('priority_5').value;
+                const time5 = document.getElementById('time_5').value;
+                const arousalNow = document.getElementById('arousal_now').value;
+                const arousalTraining = document.getElementById('arousal_training').value;
+                const arousalStrategies = document.getElementById('arousal_strategies').value;
+                const weeklyGoals = document.getElementById('weekly_goals').value;
+                const critic1 = document.getElementById('critic_1').value;
+                const critic2 = document.getElementById('critic_2').value;
+                const critic3 = document.getElementById('critic_3').value;
+                const champion1 = document.getElementById('champion_1').value;
+                const champion2 = document.getElementById('champion_2').value;
+                const champion3 = document.getElementById('champion_3').value;
+                const mindfulnessNotes = document.getElementById('mindfulness_notes').value;
+
+                let summary = `# Mental Exercise Summary\n\n`;
+                
+                summary += `## 1. The Success Map\n`;
+                summary += `### My strengths and accomplishments that led me to this moment:\n`;
+                summary += `1. ${successBubble1 || 'Not specified'}\n`;
+                summary += `2. ${successBubble2 || 'Not specified'}\n`;
+                summary += `3. ${successBubble3 || 'Not specified'}\n`;
+                summary += `4. ${successBubble4 || 'Not specified'}\n`;
+                summary += `5. ${successBubble5 || 'Not specified'}\n`;
+                summary += `6. ${successBubble6 || 'Not specified'}\n\n`;
+
+                summary += `## 2. Weekly Priorities\n`;
+                summary += `1. Priority: ${priority1 || 'Not specified'} - Time: ${time1 || 'Not specified'} hours\n`;
+                summary += `2. Priority: ${priority2 || 'Not specified'} - Time: ${time2 || 'Not specified'} hours\n`;
+                summary += `3. Priority: ${priority3 || 'Not specified'} - Time: ${time3 || 'Not specified'} hours\n`;
+                summary += `4. Priority: ${priority4 || 'Not specified'} - Time: ${time4 || 'Not specified'} hours\n`;
+                summary += `5. Priority: ${priority5 || 'Not specified'} - Time: ${time5 || 'Not specified'} hours\n\n`;
+                
+                summary += `## 3. The Arousal Level Thermometer\n`;
+                summary += `Arousal level NOW: ${arousalNow || 'Not specified'}/10\n`;
+                summary += `Arousal level at recent trainings: ${arousalTraining || 'Not specified'}\n`;
+                summary += `Strategies for managing arousal level: \n${arousalStrategies || 'No notes.'}\n\n`;
+
+                summary += `## 4. Weekly Micro-Goals\n`;
+                summary += `My goals: \n${weeklyGoals || 'No notes.'}\n\n`;
+
+                summary += `## 5. The Pre-Competition Dialogue\n`;
+                summary += `### The worst things I say to myself:\n`;
+                summary += `1. ${critic1 || 'Not specified'}\n`;
+                summary += `2. ${critic2 || 'Not specified'}\n`;
+                summary += `3. ${critic3 || 'Not specified'}\n\n`;
+                summary += `### Why I will change these thoughts:\n`;
+                summary += `1. ${champion1 || 'Not specified'}\n`;
+                summary += `2. ${champion2 || 'Not specified'}\n`;
+                summary += `3. ${champion3 || 'Not specified'}\n\n`;
+
+                summary += `## 6. Mindfulness and Focus\n`;
+                summary += `Notes on mindfulness: \n${mindfulnessNotes || 'No notes.'}\n\n`;
+
+                summaryTextarea.value = summary;
+                summarySection.classList.remove('hidden');
+                summarySection.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Function to copy text to clipboard
+            function copySummary() {
+                summaryTextarea.select();
+                document.execCommand('copy');
+                alert('Summary copied to clipboard!');
+            }
+
+            // Assign events to buttons
+            resetButton.addEventListener('click', resetForm);
+            summarizeButton.addEventListener('click', generateSummary);
+            copyButton.addEventListener('click', copySummary);
+        });
+    </script>
+</body>
+</html>
